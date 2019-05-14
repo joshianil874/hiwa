@@ -7,6 +7,7 @@ $msg="";
 	}
 $role=$_SESSION['user'];
 
+
 if ($role != 'admin') Header("Location: menu.php");
 ?>
 <html>
