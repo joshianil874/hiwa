@@ -21,8 +21,8 @@ $res = pg_query_params($conn, "INSERT INTO orders
 pg_free_result($res);
 pg_close($conn);	
 }
+else
 ?>
-
 
 <html>
 <head>
@@ -88,6 +88,9 @@ pg_free_result($res);
 	pg_close($conn);
 	echo '</select></td>';?>
 </tr>
+	#Access control to admin only in order to change the status
+<?php if($role = 'admin'){ ?>
+
 <tr>
 	<td>Status</td>
 	<td><select name="status">
@@ -98,6 +101,8 @@ pg_free_result($res);
 <option value="paid">Paid</option>
 </select></td>
 </tr>
+	<?php }
+?>
 </table>
 <p>
 <input type="submit" name="a" value="Create order">
