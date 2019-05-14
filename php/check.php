@@ -2,13 +2,11 @@
 require 'config.phplib';
 
 $msg="";
-if (!array_key_exists('hiwa-user', $_COOKIE) ||
-    !array_key_exists('hiwa-role', $_COOKIE)) {
+	if (isset($_SESSION['user']) === false){
 	Header("Location: login.php");
-	exit();
-}
+	}
+$role=$_SESSION['user'];
 
-$role=$_COOKIE['hiwa-role'];
 if ($role != 'admin') Header("Location: menu.php");
 ?>
 <html>
