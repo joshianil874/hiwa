@@ -1,6 +1,8 @@
 <?php
 require 'config.phplib';
 
+// REDIRECT TO THE LOGIN MAIN PAGE IF NO SESSION IS BEING SET
+
 $msg="";
 if (!array_key_exists('hiwa-user', $_COOKIE) ||
     !array_key_exists('hiwa-role', $_COOKIE)) {
