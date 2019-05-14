@@ -15,8 +15,12 @@ if (array_key_exists('action', $_REQUEST) && array_key_exists('prodid', $_REQUES
 	if ($_REQUEST['action'] == 'delete') {
 		$conn = pg_connect('user='.$CONFIG['username'].
 			' dbname='.$CONFIG['database']);
-		$res = pg_query($conn, "DELETE FROM products WHERE 
+		
+		#Prepared statement to avoid sql injection
+		$res = pg_prepare($conn, 'stmt', "DELETE FROM products WHERE 
+		 
 			productid='".$_REQUEST['prodid']."'");
+		$res = pg_execute($conn, 'stmt')
 		if ($res === FALSE) {
 			$msg = "Unable to remove customer";
 		}
